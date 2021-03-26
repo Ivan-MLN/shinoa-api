@@ -8,10 +8,10 @@
 <a href="https://github.com/QUERY-GANI"><img title="Author" src="https://img.shields.io/badge/Author-Query Gani-orange.svg?style=for-the-badge&logo=github"></a>
 </p>
 <p align="center">
-<a href="https://github.com/QUERY-GANI/express-restapi"><img title="Followers" src="https://img.shields.io/github/followers/QUERY-GANI?color=red&style=flat-square"></a>
-<a href="https://github.com/QUERY-GANI/express-restapi"><img title="Stars" src="https://img.shields.io/github/stars/QUERY-GANI/express-restapi?color=blue&style=flat-square"></a>
-<a href="https://github.com/QUERY-GANI/express-restapi"><img title="Forks" src="https://img.shields.io/github/forks/QUERY-GANI/express-restapi?color=red&style=flat-square"></a>
-<a href="https://github.com/QUERY-GANI/express-restapi"><img title="Watching" src="https://img.shields.io/github/watchers/QUERY-GANI/express-restapi?label=Watchers&color=blue&style=flat-square"></a>
+<a href="https://github.com/QUERY-GANI/shinoa-api"><img title="Followers" src="https://img.shields.io/github/followers/QUERY-GANI?color=red&style=flat-square"></a>
+<a href="https://github.com/QUERY-GANI/shinoa-api"><img title="Stars" src="https://img.shields.io/github/stars/QUERY-GANI/express-restapi?color=blue&style=flat-square"></a>
+<a href="https://github.com/QUERY-GANI/shinoa-api"><img title="Forks" src="https://img.shields.io/github/forks/QUERY-GANI/express-restapi?color=red&style=flat-square"></a>
+<a href="https://github.com/QUERY-GANI/shinoa-api"><img title="Watching" src="https://img.shields.io/github/watchers/QUERY-GANI/express-restapi?label=Watchers&color=blue&style=flat-square"></a>
 </p>
 <p align='center'>
    <a href="https://wa.me/6283898698875"><img height="30" src="https://c.top4top.io/p_1837yybbf0.jpeg"></a>&nbsp;&nbsp;
