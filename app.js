@@ -21,7 +21,7 @@ app.use("/user", user_routes)
 app.use("/dl", dl_routes)
 app.use("/stalk", stalk_routes)
 
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 let db = mongoose.connection
 
 db.on("error", console.error.bind(console, "Database connection error!"))
