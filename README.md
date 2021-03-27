@@ -25,6 +25,6 @@
 - First go to [here](https://dashboard.heroku.com/apps)
 - Click the "New" button then click create new app
 - After create app go to dashboard of the app
-- coming soon, the tutorial will be made again later
+- coming soon, this tutorial will be made again later
 
 # Big thanks to [ihsandev](https://github.com/ihsandev/) for the [tutorial](https://www.youtube.com/watch?v=bzBSjjym814) :)
