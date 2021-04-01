@@ -24,7 +24,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 // Express Session
-app.use(cookieParser("secret"))
+app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(
   session({
     secret: "very secret this is",
