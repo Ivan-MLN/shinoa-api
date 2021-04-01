@@ -1,4 +1,5 @@
 require("dotenv/config")
+const favicon = require("serve-favicon")
 const express = require("express")
 const session = require("express-session")
 const cookieParser = require("cookie-parser")
@@ -18,6 +19,8 @@ db.on("error", console.error.bind(console, "Database connection error!"))
 db.once("open", () => {
   console.log("DB is connected now!")
 })
+
+app.use(favicon(__dirname + "/../client/public/img/shinoa.ico"))
 
 // Bodyparser middleware, extended false does not allow nested payloads
 app.use(express.json())
@@ -43,6 +46,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // Routes
+app.use((req, res) => {
+  res.status(404)
+  res.render(__dirname + "/../client/public/sbadmin/404.ejs", { url: process.env.BASE_URL })
+})
+
 app.use("/", routes)
 
 app.listen(process.env.PORT, () => console.log(`server running on localhost:${process.env.PORT}`))
