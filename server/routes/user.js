@@ -51,47 +51,54 @@ router.delete("/:id", isLoggedIn, async (req, res) => {
 })
 
 router.get("/register", (req, res) => {
-  res.render(path.join(__dirname + "/../../client/public/sbadmin/register.ejs"), { url: process.env.BASE_URL })
+  res.render(path.join(__dirname + "/../../client/public/sbadmin/register.ejs"), { url: process.env.BASE_URL, error: req.flash("rerror") })
 })
 
-router.post("/register", isLoggedIn, async (req, res, next) => {
+router.post("/register", async (req, res, next) => {
   let { error } = registerValidation(req.body)
   if (error) {
-    return res.json({ errors: error.details[0].message })
+    req.flash("rerror", error.details[0].message)
+    return res.redirect("/user/register")
   }
   passport.authenticate("register-local", function (err, user, info) {
     if (err) {
-      return res.status(400).json({ error: err })
+      req.flash("rerror", err)
+      return res.redirect("/user/register")
     }
     req.logIn(user, function (err) {
       if (err) {
-        return res.status(400).json({ error: err })
+        req.flash("rerror", err)
+        return res.redirect("/user/register")
       }
-      return res.status(200).json({ success: `logged in ${user.id}` })
+      return res.redirect("/docs")
     })
   })(req, res, next)
 })
 
 router.get("/login", (req, res) => {
   if (req.isAuthenticated()) return res.redirect("/docs")
-  res.render(path.join(__dirname + "/../../client/public/sbadmin/login.ejs"), { url: process.env.BASE_URL })
+  res.render(path.join(__dirname + "/../../client/public/sbadmin/login.ejs"), { url: process.env.BASE_URL, error: req.flash("lerror") })
 })
 
 router.post("/login", (req, res, next) => {
   let { error } = loginValidation(req.body)
   if (error) {
-    return res.json({ errors: error.details[0].message })
+    req.flash("lerror", error.details[0].message)
+    return res.redirect("/user/login")
   }
   passport.authenticate("login-local", function (err, user, info) {
     if (err) {
-      return res.status(400).json({ errors: err })
+      req.flash("lerror", err)
+      return res.redirect("/user/login")
     }
     if (!user) {
-      return res.status(400).json({ errors: "No user found" })
+      req.flash("lerror", "Email anda belum terdaftar!")
+      return res.redirect("/user/login")
     }
     req.logIn(user, function (err) {
       if (err) {
-        return res.status(400).json({ errors: err })
+        req.flash("lerror", err)
+        return res.redirect("/user/login")
       }
       return res.redirect("/docs")
     })
@@ -104,7 +111,7 @@ router.get("/logout", (req, res) => {
 })
 
 router.get("/forgot", (req, res) => {
-  res.render(path.join(__dirname + "/../public/../client/sbadmin/forgot-password.ejs"), { url: process.env.BASE_URL })
+  res.render(path.join(__dirname + "/../../client/public/sbadmin/forgot-password.ejs"), { url: process.env.BASE_URL })
 })
 
 module.exports = router
