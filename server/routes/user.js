@@ -51,7 +51,7 @@ router.delete("/:id", isLoggedIn, async (req, res) => {
 })
 
 router.get("/register", (req, res) => {
-  res.render(path.join(__dirname + "/../../client/public/sbadmin/register.ejs"), { url: process.env.BASE_URL, error: req.flash("rerror") })
+  res.render(path.join(__dirname + "/../../client/sc_code/template_sbadmin/register.ejs"), { url: process.env.BASE_URL, error: req.flash("rerror") })
 })
 
 router.post("/register", async (req, res, next) => {
@@ -77,7 +77,7 @@ router.post("/register", async (req, res, next) => {
 
 router.get("/login", (req, res) => {
   if (req.isAuthenticated()) return res.redirect("/docs")
-  res.render(path.join(__dirname + "/../../client/public/sbadmin/login.ejs"), { url: process.env.BASE_URL, error: req.flash("lerror") })
+  res.render(path.join(__dirname + "/../../client/sc_code/template_sbadmin/login.ejs"), { url: process.env.BASE_URL, error: req.flash("lerror") })
 })
 
 router.post("/login", (req, res, next) => {
@@ -111,7 +111,7 @@ router.get("/logout", (req, res) => {
 })
 
 router.get("/forgot", (req, res) => {
-  res.render(path.join(__dirname + "/../../client/public/sbadmin/forgot-password.ejs"), { url: process.env.BASE_URL })
+  res.render(path.join(__dirname + "/../../client/sc_code/template_sbadmin/forgot-password.ejs"), { url: process.env.BASE_URL })
 })
 
 module.exports = router

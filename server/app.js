@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(
   session({
-    secret: "very secret this is",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     store: new MongoStore({ mongooseConnection: db }),
@@ -46,11 +46,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // Routes
+app.use("/", routes)
 app.use((req, res) => {
   res.status(404)
-  res.render(__dirname + "/../client/public/sbadmin/404.ejs", { url: process.env.BASE_URL })
+  res.render(__dirname + "/../client/sc_code/template_sbadmin/404.ejs", { url: process.env.BASE_URL })
 })
-
-app.use("/", routes)
 
 app.listen(process.env.PORT, () => console.log(`server running on localhost:${process.env.PORT}`))

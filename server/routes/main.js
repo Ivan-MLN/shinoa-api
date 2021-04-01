@@ -7,10 +7,10 @@ const { isLoggedIn } = require("../config/validation")
 const path = require("path")
 
 routes.get("/", (req, res) => {
-  res.render(path.join(__dirname + "../../../client/public/index.ejs"), { url: process.env.BASE_URL })
+  res.render(path.join(__dirname + "../../../client/sc_code/index.ejs"), { url: process.env.BASE_URL })
 })
 routes.get("/docs", isLoggedIn, (req, res) => {
-  res.render(path.join(__dirname + "../../../client/public/sbadmin/blank.ejs"), { url: process.env.BASE_URL })
+  res.render(path.join(__dirname + "../../../client/sc_code/template_sbadmin/blank.ejs"), { url: process.env.BASE_URL })
 })
 // routes.get("/generate", (req, res) => {
 //   require("crypto").randomBytes(48, function (err, buffer) {
