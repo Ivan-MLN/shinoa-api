@@ -18,7 +18,7 @@
    <a href="https://instagram.com/query.gani"><img height="30" src="https://raw.githubusercontent.com/TobyG74/TobyG74/main/instagram.jpg"></a>
 </P>
 
-# This project is under development
+# This project is under development !
 
 ### How to deploy to heroku
 
@@ -27,4 +27,4 @@
 - After create app go to dashboard of the app
 - coming soon, this tutorial will be made again later
 
-# Big thanks to [ihsandev](https://github.com/ihsandev/) for the [tutorial](https://www.youtube.com/watch?v=bzBSjjym814) :)
+# Big thanks to [ihsandev](https://github.com/ihsandev/) and [Fabian Bosler](https://medium.com/swlh/set-up-an-express-js-app-with-passport-js-and-mongodb-for-password-authentication-6ea05d95335c#9305) for the [tutorial](https://www.youtube.com/watch?v=bzBSjjym814) :)
