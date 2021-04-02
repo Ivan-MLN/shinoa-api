@@ -20,6 +20,14 @@
 
 # Project ini masih dalam pengembangan !
 ## [Lihat contoh website rest apinya](https://shinoa-rest.herokuapp.com/)
+
+### Hal yang dibutuhkan untuk menggunakan project ini :
+- Paham dengan dasar bahasa pemrograman javascript
+- Paham dengan dasar framework expressjs
+- Paham dengan cara kerja nodejs
+- Paham dengan cara menggunakan github 
+- Tidak malas membaca dan mencari ke gugel
+
 ### Cara menggunakannya diheroku
 
 - Buat akun terlebih dahulu, lalu [kunjungi website heroku/apps](https://dashboard.heroku.com/apps)
