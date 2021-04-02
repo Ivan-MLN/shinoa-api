@@ -21,7 +21,7 @@ passport.use(
       .then((user) => {
         // Create new User
         if (!user) {
-          return done(null, false, { message: "Email anda belum terdaftar" })
+          return done({ message: "Email anda belum terdaftar" }, false)
         } else {
           // Match password
           bcrypt.compare(password, user.password, (err, isMatch) => {
@@ -30,13 +30,13 @@ passport.use(
             if (isMatch) {
               return done(null, user)
             } else {
-              return done(null, false, { message: "Wrong password" })
+              return done({ message: "Wrong password" }, false)
             }
           })
         }
       })
       .catch((err) => {
-        return done(null, false, { message: err })
+        return done({ message: err }, false)
       })
   })
 )

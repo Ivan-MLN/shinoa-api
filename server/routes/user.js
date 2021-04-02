@@ -95,10 +95,10 @@ routes.post("/login", (req, res, next) => {
   }
   passport.authenticate("login-local", function (err, user, info) {
     if (err) {
-      req.flash("lerror", err)
+      req.flash("lerror", err.message)
       return res.redirect("/user/login")
     }
-    if (!user) {
+    if (user == "null") {
       req.flash("lerror", "Email anda belum terdaftar!")
       return res.redirect("/user/login")
     }
