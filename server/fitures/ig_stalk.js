@@ -16,6 +16,7 @@ module.exports = async (username) => {
   const BASE_URL = `https://www.instagram.com/${username}/`
   try {
     const $ = await fetchHTML(BASE_URL)
+    console.log($.html())
     let script = $("script").eq(4).html()
     let {
       entry_data: {
