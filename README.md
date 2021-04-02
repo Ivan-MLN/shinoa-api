@@ -23,6 +23,7 @@
 
 ### Hal yang dibutuhkan untuk menggunakan project ini :
 - Paham dengan dasar bahasa pemrograman javascript
+- Paham dengan dasar database no-sql MongoDB
 - Paham dengan dasar framework expressjs
 - Paham dengan cara kerja nodejs
 - Paham dengan cara menggunakan github 
