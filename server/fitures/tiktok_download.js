@@ -14,6 +14,7 @@ module.exports = async (link) => {
     const videoMeta = await tiktok.getVideoMeta(link, options)
     return videoMeta.collector
   } catch (error) {
+    console.log(e)
     return false
   }
 }

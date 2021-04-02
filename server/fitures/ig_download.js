@@ -6,6 +6,7 @@ let fetchHTML = async (url) => {
     const { data } = await axios.get(url)
     return cheerio.load(data)
   } catch (e) {
+    console.log("axios")
     return false
   }
 }
@@ -49,6 +50,7 @@ module.exports = async (link) => {
       return obj
     }
   } catch (e) {
+    console.log(e)
     return false
   }
 }

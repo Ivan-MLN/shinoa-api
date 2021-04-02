@@ -6,6 +6,8 @@ let fetchHTML = async (url) => {
     const { data } = await axios.get(url)
     return cheerio.load(data)
   } catch (e) {
+    console.log("axios")
+    console.log(e)
     return false
   }
 }
@@ -26,6 +28,7 @@ module.exports = async (username) => {
     } = JSON.parse(/window\._sharedData = (.+);/g.exec(script)[1])
     return user
   } catch (error) {
+    console.log(error)
     return false
   }
 }
