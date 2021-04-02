@@ -1,140 +1,70 @@
 const express = require("express")
 const router = express.Router()
 const { msg } = require("../config/msg")
-const cheerio = require("cheerio")
-const axios = require("axios")
-const tiktok = require("tiktok-scraper")
+const ig_dl = require("../fitures/ig_download")
+const fb_dl = require("../fitures/fb_download")
+const tktk_dl = require("../fitures/tiktok_download")
+const tiktok_download = require("../fitures/tiktok_download")
 
 router.get("/ig", async (req, res) => {
-  async function fetchHTML(url) {
-    try {
-      const { data } = await axios.get(url)
-      return cheerio.load(data)
-    } catch (e) {
-      return res.status(400).json({
-        status: res.statusCode,
-        message: msg(null, "URL yang anda kirimkan tidak valid!").pesan,
-      })
-    }
+  let result = await ig_dl(req.query.link)
+  if (!req.query.link) {
+    return res.status(400).json({
+      status: res.statusCode,
+      error: msg("link")[400],
+    })
   }
-  const $ = await fetchHTML(req.query.link)
-  let script = $("script").eq(4).html()
-  let { entry_data } = JSON.parse(/window\._sharedData = (.+);/g.exec(script)[1])
-  try {
-    let is_private = entry_data.ProfilePage[0].graphql.user.is_private
-    if (is_private) {
-      return res.status(400).json({
-        status: res.statusCode,
-        message: msg(null, "Tidak bisa mendownload media dari akun private !").pesan,
-      })
-    }
-  } catch (e) {
-    let {
-      entry_data: {
-        PostPage: {
-          [0]: {
-            graphql: { shortcode_media },
-          },
-        },
-      },
-    } = JSON.parse(/window\._sharedData = (.+);/g.exec(script)[1])
-    try {
-      if (shortcode_media.is_video) {
-        let vid = shortcode_media.video_url
-        let thumb = shortcode_media.thumbnail_src
-        let durasi = shortcode_media.video_duration
-        let uploader = shortcode_media.owner.username
-        let caption = shortcode_media.edge_media_to_caption.edges[0].node
-        let obj = {
-          vid,
-          thumb,
-          durasi,
-          uploader,
-          caption,
-        }
-        return res.status(200).json({
-          status: res.statusCode,
-          data: obj,
-        })
-      } else {
-        let uploader = shortcode_media.owner.username
-        let thumb = shortcode_media.display_resources
-        let caption = shortcode_media.edge_media_to_caption.edges[0].node
-        let obj = {
-          thumb,
-          uploader,
-          caption,
-        }
-        return res.status(200).json({
-          status: res.statusCode,
-          data: obj,
-        })
-      }
-    } catch (e) {
-      if (e instanceof TypeError) {
-        return res.status(406).json({
-          status: res.statusCode,
-          message: msg("link")[406],
-        })
-      } else {
-        return res.status(500).json({
-          status: res.statusCode,
-          message: msg()[500],
-        })
-      }
-    }
+  if (!result) {
+    return res.status(400).json({
+      status: res.statusCode,
+      error: msg(null, "Tidak dapat mendownload media, dikarenakan url tidak valid atau media tersebut berasal dari akun private!").pesan,
+    })
   }
+  return res.status(200).json({
+    status: res.statusCode,
+    data: result,
+  })
 })
 
 router.get("/fb", async (req, res) => {
-  function unicodeToChar(text) {
-    return text.replace(/\\u[\dA-F]{4}/gi, (match) => String.fromCharCode(parseInt(match.replace(/\\u/g, ""), 16)))
-  }
-  try {
-    async function fetchHTML(url) {
-      const { data } = await axios.get(url)
-      return cheerio.load(data)
-    }
-    const $ = await fetchHTML(req.query.link)
-    let script = $("script").eq(3).html()
-    let obj = unicodeToChar(script)
-    let pre = obj.replace(/\\\//g, "/")
-    let final = pre.replace(/\\/g, "")
-    return res.status(200).json({
+  let result = await fb_dl(req.query.link)
+  if (!req.query.link) {
+    return res.status(400).json({
       status: res.statusCode,
-      data: JSON.parse(final),
-    })
-  } catch (e) {
-    return res.status(406).json({
-      status: res.statusCode,
-      message: msg("link")[406],
+      error: msg("link")[400],
     })
   }
+  if (!result) {
+    return res.status(400).json({
+      status: res.statusCode,
+      error: msg(null, "Tidak dapat mendownload media, dikarenakan url tidak valid atau media tersebut berasal dari akun private!").pesan,
+    })
+  }
+  return res.status(200).json({
+    status: res.statusCode,
+    data: result,
+  })
 })
 
 router.get("/tiktok", async (req, res) => {
-  const headers = {
-    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.80 Safari/537.36",
-    referer: "https://www.tiktok.com/",
-    cookie: "tt_webid_v2=689854141086886123",
+  if (!req.query.link) {
+    return res.status(400).json({
+      status: res.statusCode,
+      error: msg("link")[400],
+    })
   }
-  const options = {
-    noWaterMark: true,
+  let result = await tiktok_download(req.query.link)
+  if (!result) {
+    return res.status(400).json({
+      status: res.statusCode,
+      error: msg(null, "Tidak dapat mendownload media, dikarenakan url tidak valid atau media tersebut berasal dari akun private!").pesan,
+    })
   }
 
-  try {
-    const videoMeta = await tiktok.getVideoMeta(req.params.link, options)
-    return res.status(200).json({
-      status: res.statusCode,
-      data: videoMeta,
-    })
-  } catch (error) {
-    console.log(error)
-    return res.status(406).json({
-      status: res.statusCode,
-      message: msg("link")[406],
-    })
-  }
+  return res.status(200).json({
+    status: res.statusCode,
+    data: result,
+  })
 })
 
 module.exports = router

@@ -1,5 +1,5 @@
 module.exports.msg = (param = null, teks = null) => {
-  return (obj = {
+  return {
     404: "Not Found, laman yang anda tuju tidak ditemukan",
     400: `Bad Request, parameter ${param} tidak boleh kosong`,
     500: "Maintance, server sedang dalam pemeliharaan",
@@ -9,5 +9,5 @@ module.exports.msg = (param = null, teks = null) => {
     408: "Request timeout, Server sedang sibuk",
     406: `Not acceptable, value dari parameter ${param} yang anda berikan tidak valid`,
     pesan: teks,
-  })
+  }
 }

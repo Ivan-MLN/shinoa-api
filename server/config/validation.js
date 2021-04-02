@@ -29,7 +29,7 @@ function isOwner(req, res, next) {
   if (req.isAuthenticated() && req.user.email == process.env.OWNER) {
     return next()
   }
-  res.redirect("/user/login")
+  res.redirect("/notFound")
 }
 
 module.exports.registerValidation = registerValidation

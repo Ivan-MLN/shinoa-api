@@ -1,12 +1,13 @@
 const express = require("express")
-const router = express.Router()
+const routes = express.Router()
 const User = require("../models/User")
 const { registerValidation, loginValidation, isLoggedIn, isOwner } = require("../config/validation")
 const path = require("path")
 const passport = require("passport")
+const ejs = require("ejs")
 require("dotenv/config")
 
-router.get("/", isOwner, async (req, res) => {
+routes.get("/", isOwner, async (req, res) => {
   try {
     const showUser = await User.find()
     res.json(showUser)
@@ -18,7 +19,12 @@ router.get("/", isOwner, async (req, res) => {
   }
 })
 
-router.put("/:id", isLoggedIn, async (req, res) => {
+routes.get("/profile", isLoggedIn, async (req, res) => {
+  const html = await ejs.renderFile(path.join(__dirname + "../../../client/sc_code/template_sbadmin/layout.ejs"), { url: process.env.BASE_URL, file: "./myProfile.ejs", title: "My profile", user: req.user }, { async: true })
+  return res.send(html)
+})
+
+routes.put("/:id", isLoggedIn, async (req, res) => {
   try {
     const updateUser = await User.updateOne(
       { _id: req.params.id },
@@ -38,7 +44,7 @@ router.put("/:id", isLoggedIn, async (req, res) => {
   }
 })
 
-router.delete("/:id", isLoggedIn, async (req, res) => {
+routes.delete("/:id", isLoggedIn, async (req, res) => {
   try {
     const deleteUser = await User.deleteOne({ _id: req.params.id })
     res.json(deleteUser)
@@ -50,11 +56,12 @@ router.delete("/:id", isLoggedIn, async (req, res) => {
   }
 })
 
-router.get("/register", (req, res) => {
+routes.get("/register", (req, res) => {
+  if (req.isAuthenticated()) return res.redirect("/docs")
   res.render(path.join(__dirname + "/../../client/sc_code/template_sbadmin/register.ejs"), { url: process.env.BASE_URL, error: req.flash("rerror") })
 })
 
-router.post("/register", async (req, res, next) => {
+routes.post("/register", async (req, res, next) => {
   let { error } = registerValidation(req.body)
   if (error) {
     req.flash("rerror", error.details[0].message)
@@ -75,12 +82,12 @@ router.post("/register", async (req, res, next) => {
   })(req, res, next)
 })
 
-router.get("/login", (req, res) => {
+routes.get("/login", async (req, res) => {
   if (req.isAuthenticated()) return res.redirect("/docs")
   res.render(path.join(__dirname + "/../../client/sc_code/template_sbadmin/login.ejs"), { url: process.env.BASE_URL, error: req.flash("lerror") })
 })
 
-router.post("/login", (req, res, next) => {
+routes.post("/login", (req, res, next) => {
   let { error } = loginValidation(req.body)
   if (error) {
     req.flash("lerror", error.details[0].message)
@@ -105,13 +112,13 @@ router.post("/login", (req, res, next) => {
   })(req, res, next)
 })
 
-router.get("/logout", (req, res) => {
+routes.get("/logout", (req, res) => {
   req.logout()
   res.redirect("/")
 })
 
-router.get("/forgot", (req, res) => {
+routes.get("/forgot", async (req, res) => {
   res.render(path.join(__dirname + "/../../client/sc_code/template_sbadmin/forgot-password.ejs"), { url: process.env.BASE_URL })
 })
 
-module.exports = router
+module.exports = routes
