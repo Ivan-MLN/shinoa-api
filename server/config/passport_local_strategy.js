@@ -15,9 +15,9 @@ passport.deserializeUser((id, done) => {
 // Local Strategy
 passport.use(
   "login-local",
-  new LocalStrategy({ usernameField: "email", passReqToCallback: true }, (req, email, password, done) => {
+  new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
     // Match User
-    User.findOne({ email: email })
+    User.findOne({ email })
       .then((user) => {
         // Create new User
         if (!user) {

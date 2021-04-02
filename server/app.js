@@ -9,7 +9,7 @@ const mongoose = require("mongoose")
 
 const passport = require("./config/passport_local_strategy")
 const routes = require("./routes/main")
-
+const cors = require("cors")
 const app = express()
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
@@ -23,6 +23,7 @@ db.once("open", () => {
 app.use(favicon(__dirname + "/../client/public/img/shinoa.ico"))
 
 // Bodyparser middleware, extended false does not allow nested payloads
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
