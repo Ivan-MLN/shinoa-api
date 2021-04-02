@@ -18,13 +18,14 @@
    <a href="https://instagram.com/query.gani"><img height="30" src="https://raw.githubusercontent.com/TobyG74/TobyG74/main/instagram.jpg"></a>
 </P>
 
-# This project is under development !
-## [See my rest api](https://shinoa-rest.herokuapp.com/)
-### How to deploy to heroku
+# Project ini masih dalam pengembangan !
+## [Lihat contoh website rest apinya](https://shinoa-rest.herokuapp.com/)
+### Cara menggunakannya diheroku
 
-- First go to [here](https://dashboard.heroku.com/apps)
-- Click the "New" button then click create new app
-- After create app go to dashboard of the app
-- coming soon, this tutorial will be made again later
+- Buat akun terlebih dahulu, lalu [kunjungi website heroku/apps](https://dashboard.heroku.com/apps)
+- Buat app baru dengan menekan tombol "New" lalu click create new app
+- Setelah itu masuk kedashboard appnya, dan klik deploy dibagian navbar
+- fork [repository](https://github.com/QUERY-GANI/shinoa-api)nya lalu enable kan auto deploy, dan ketik deploy 
+- Tunggu beberapa saat hingga proses pendeployan nya selesai, setelah selesai anda bisa mengunjungi website anda :3  
 
 # Big thanks to [ihsandev](https://github.com/ihsandev/) and [Fabian Bosler](https://medium.com/swlh/set-up-an-express-js-app-with-passport-js-and-mongodb-for-password-authentication-6ea05d95335c#9305) for the [tutorial](https://www.youtube.com/watch?v=bzBSjjym814) :)
