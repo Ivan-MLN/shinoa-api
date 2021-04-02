@@ -19,7 +19,7 @@
 </P>
 
 # This project is under development !
-## [See my rest api](shinoa-rest.herokuapp.com/)
+## [See my rest api](https://shinoa-rest.herokuapp.com/)
 ### How to deploy to heroku
 
 - First go to [here](https://dashboard.heroku.com/apps)
