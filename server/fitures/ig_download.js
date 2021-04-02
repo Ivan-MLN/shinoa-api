@@ -14,7 +14,7 @@ let fetchHTML = async (url) => {
 module.exports = async (link) => {
   try {
     const $ = await fetchHTML(link)
-    console.log($)
+    console.log($.html())
     let script = $("script").eq(4).html()
     let {
       entry_data: {
