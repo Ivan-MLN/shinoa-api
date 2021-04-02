@@ -3,7 +3,6 @@ const router = express.Router()
 const { msg } = require("../config/msg")
 const ig_dl = require("../fitures/ig_download")
 const fb_dl = require("../fitures/fb_download")
-const tktk_dl = require("../fitures/tiktok_download")
 const tiktok_download = require("../fitures/tiktok_download")
 
 router.get("/ig", async (req, res) => {
