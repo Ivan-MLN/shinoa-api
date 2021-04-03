@@ -38,7 +38,7 @@
 - Buat app baru dengan menekan tombol "New" lalu click create new app
 - Setelah itu masuk kedashboard appnya, dan klik deploy dibagian navbar
 - fork [repository](https://github.com/QUERY-GANI/shinoa-api)nya lalu enable kan auto deploy
-- Eitss.. jangan lupa setting env variabel di , silahkan tambahkan sesuai yang ada di file env.example
+- Eitss.. jangan lupa setting configurasi env variabel di , silahkan tambahkan sesuai yang ada di file env.example
 - setelah itu baru ketik deploy
 - Tunggu beberapa saat hingga proses pendeployan nya selesai, setelah selesai anda bisa mengunjungi website anda :3
 
