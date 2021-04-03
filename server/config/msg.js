@@ -7,7 +7,5 @@ module.exports.msg = (param = null, teks = null) => {
     403: "Forbidden, Laman tidak boleh diakses",
     405: "Method not allowed, Aksi ini tidak diperbolehkan",
     408: "Request timeout, Server sedang sibuk",
-    406: `Not acceptable, value dari parameter ${param} yang anda berikan tidak valid`,
-    pesan: teks,
   }
 }

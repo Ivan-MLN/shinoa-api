@@ -16,12 +16,21 @@ router.get("/ig", async (req, res) => {
   if (!result) {
     return res.status(400).json({
       status: res.statusCode,
-      error: msg(null, "Tidak dapat mendownload media, dikarenakan url tidak valid atau media tersebut berasal dari akun private!").pesan,
+      error: "Error, dikarenakan url tidak valid atau media tersebut berasal dari akun private!",
     })
+  }
+  let date = new Date(result.taken_at_timestamp * 1000)
+  let rapihkan = {
+    image: result.display_resources,
+    is_video: result.is_video,
+    timeUpload: JSON.stringify(date).slice(1, 11),
+    uploadBy: result.owner.username,
+    jumlah_like: result.edge_media_preview_like.count,
+    caption: result.edge_media_to_caption.edges[0].node.text,
   }
   return res.status(200).json({
     status: res.statusCode,
-    data: result,
+    data: rapihkan,
   })
 })
 
@@ -36,7 +45,7 @@ router.get("/fb", async (req, res) => {
   if (!result) {
     return res.status(400).json({
       status: res.statusCode,
-      error: msg(null, "Tidak dapat mendownload media, dikarenakan url tidak valid atau media tersebut berasal dari akun private!").pesan,
+      error: "Error, dikarenakan url tidak valid atau media tersebut berasal dari akun private!",
     })
   }
   return res.status(200).json({
@@ -56,7 +65,7 @@ router.get("/tiktok", async (req, res) => {
   if (!result) {
     return res.status(400).json({
       status: res.statusCode,
-      error: msg(null, "Tidak dapat mendownload media, dikarenakan url tidak valid atau media tersebut berasal dari akun private!").pesan,
+      error: "Error, dikarenakan url tidak valid atau media tersebut berasal dari akun private!",
     })
   }
 
