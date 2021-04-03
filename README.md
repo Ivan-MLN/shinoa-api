@@ -29,6 +29,7 @@
 - Paham dengan dasar framework expressjs
 - Paham dengan cara kerja nodejs
 - Paham dengan cara menggunakan github
+- Paham tentang environment variabel
 - Tidak malas membaca dan mencari ke gugel
 
 ### Cara menggunakannya diheroku
@@ -36,7 +37,9 @@
 - Buat akun terlebih dahulu, lalu [kunjungi website heroku/apps](https://dashboard.heroku.com/apps)
 - Buat app baru dengan menekan tombol "New" lalu click create new app
 - Setelah itu masuk kedashboard appnya, dan klik deploy dibagian navbar
-- fork [repository](https://github.com/QUERY-GANI/shinoa-api)nya lalu enable kan auto deploy, dan ketik deploy
+- fork [repository](https://github.com/QUERY-GANI/shinoa-api)nya lalu enable kan auto deploy
+- Eitss.. jangan lupa setting env variabel di , silahkan tambahkan sesuai yang ada di file env.example
+- setelah itu baru ketik deploy
 - Tunggu beberapa saat hingga proses pendeployan nya selesai, setelah selesai anda bisa mengunjungi website anda :3
 
 # Big thanks to [ihsandev](https://www.youtube.com/watch?v=bzBSjjym814) [Fabian Bosler](https://medium.com/swlh/set-up-an-express-js-app-with-passport-js-and-mongodb-for-password-authentication-6ea05d95335c#9305) [MRHRTZ](https://github.com/MRHRTZ) for helping me :)

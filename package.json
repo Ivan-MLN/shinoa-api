@@ -4,7 +4,7 @@
   "description": "rest-api for whatsapp bot",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server/app.js",
+    "dev": "nodemon server/app.js --ignore client/*",
     "start": "node server/app.js"
   },
   "repository": {
