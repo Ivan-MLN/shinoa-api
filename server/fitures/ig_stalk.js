@@ -5,7 +5,18 @@ let fetchHTML = async (url_ig) => {
   const config = {
     method: "get",
     url,
-    headers: process.env.HEADER_IG,
+    headers: {
+      "User-Agent": process.env.IG_USER,
+      Accept: "*/*",
+      "Accept-Language": "en-US,en;q=0.5",
+      "X-IG-App-ID": process.env.IG_APP_ID,
+      "X-IG-WWW-Claim": process.env.IG_CLAIM,
+      Origin: "https://www.instagram.com",
+      Connection: "keep-alive",
+      Referer: "https://www.instagram.com/",
+      Cookie: process.env.IG_COOKIE,
+      TE: "Trailers",
+    },
   }
 
   return axios(config)
