@@ -7,7 +7,7 @@ const fetchHTML = async (url_ig) => {
     method: "get",
     url,
     headers: {
-      "User-Agent": process.env.IG_USER,
+      "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:87.0) Gecko/20100101 Firefox/87.0",
       Accept: "*/*",
       "Accept-Language": "en-US,en;q=0.5",
       "X-IG-App-ID": process.env.IG_APP_ID,
