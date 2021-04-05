@@ -60,10 +60,12 @@ module.exports = async (link) => {
           }
         })
         .catch(function (error) {
+          console.log(error)
           return false
         })
     })
     .catch(function (error) {
+      console.log(error)
       return false
     })
 }
